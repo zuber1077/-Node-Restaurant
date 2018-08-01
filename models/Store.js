@@ -25,7 +25,7 @@ storeSchema.pre('save', function (next) {
     return; // stop this function from running
   }
 
-  this.slug = slag(this.name);
+  this.slug = slug(this.name);
     next();
 });
 
