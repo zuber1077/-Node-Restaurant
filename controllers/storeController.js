@@ -75,6 +75,14 @@ exports.updateStore = async (req, res) => {
     // 2. redirect them the store and tell them it worked
 };
 
+exports.getStoreBySlug = async (req,res) =>{
+    const store = await Store.findOne({ slug: req.params.slug });
+
+    if (!store) return next();
+    res.render('store', {store: store, title: store.name});
+
+}
+
 //  rick and morty
 // black mirror
 //  inception
