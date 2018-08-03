@@ -42,7 +42,7 @@ exports.resize = async (req, res , next) => {
     next(); 
 }
 
-exports.createStore = async (req, res)=>{
+exports.createStore = async (req, res) => {
    const store = await (new Store(req.body)).save();
    req.flash('success', `Successfully Created ${store.name}. Care to reave a review?`);
    res.redirect(`/store/${store.slug}`);
@@ -54,7 +54,7 @@ exports.getStores =  async (req, res) =>{
     res.render('stores', {title: 'Stores', stores});
 }
 
-exports.editStore = async (req, res) =>{
+exports.editStore = async (req, res) => {
     // 1. find z store given z ID
     const store = await Store.findOne({ _id: req.params.id});
     // 2. conform they are the owner of the store 
@@ -75,13 +75,24 @@ exports.updateStore = async (req, res) => {
     // 2. redirect them the store and tell them it worked
 };
 
-exports.getStoreBySlug = async (req,res) =>{
+exports.getStoreBySlug = async (req,res) => {
     const store = await Store.findOne({ slug: req.params.slug });
 
     if (!store) return next();
     res.render('store', {store: store, title: store.name});
-
 }
+
+exports.getStoresByTag = async (req, res) => {
+    const tag = req.params.tag;
+    const tagQuery = tag || { $exists: true }; // Query all store on tag
+
+    const tagsPromise = Store.getTagsList(); 
+    const storesPromise = Store.find({ tags: tagQuery });
+    const [tags, stores] = await Promise.all([tagsPromise, storesPromise]);
+    // var tags = result[0];
+    // var stores = result[1];
+    res.render('tags', { tags, title: 'Tags', tag , stores });
+};
 
 //  rick and morty
 // black mirror
