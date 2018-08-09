@@ -123,8 +123,25 @@ exports.searchStores = async (req, res) => {
 
 exports.mapStores = async (req, res) => {
     const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
-    res.json(coordinates);
+    const q = {
+        location: {
+            $near: {
+                $geometry: {
+                    type: 'point',
+                    coordinates
+                },
+                $maxDistance: 15000 // 15km
+            } 
+        }
+    };
+
+    const stores = await Store.find(q).select('slug name description location').limit(10);
+    res.json(stores); 
 };
+
+exports.mapPage = (req, res) => {
+    res.render('map', { title: 'Map' });
+}
 //  rick and morty
 // black mirror
 //  inception
