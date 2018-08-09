@@ -102,6 +102,29 @@ exports.getStoresByTag = async (req, res) => {
     res.render('tags', { tags, title: 'Tags', tag , stores });
 };
 
+exports.searchStores = async (req, res) => {
+    const stores = await Store
+    // first find stores that mutch
+    .find({
+        $text: {
+            $search: req.query.q
+        }
+    }, {
+        score: { $meta: 'textScore' }
+    })
+    // then sort them 
+    .sort({
+        score: { $meta: 'textScore' }
+    })
+    // limit to only 5 results
+    .limit(5);
+    res.json(stores)
+}
+
+exports.mapStores = async (req, res) => {
+    const coordinates = [req.query.lng, req.query.lat].map(parseFloat);
+    res.json(coordinates);
+};
 //  rick and morty
 // black mirror
 //  inception
