@@ -911,10 +911,11 @@ label {
   position: relative; }
   .heart__button:after {
     content: '\2665\FE0F';
-    font-size: 20px;
+    font-size: 25px;
     position: absolute;
     opacity: 0;
-    top: 0; }
+    top: 0;
+    color: red; }
   .heart__button svg {
     width: 25px;
     fill: white; }

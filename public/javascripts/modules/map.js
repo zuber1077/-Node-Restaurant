@@ -40,7 +40,7 @@ function loadPlaces(map, lat = 43.2, lng = -79.8) {
               `;    
               infoWindow.setContent(html);
               infoWindow.open(map, this);
-          }))
+          }));        
 
 
           // zoom the map to fit all markers perfectly

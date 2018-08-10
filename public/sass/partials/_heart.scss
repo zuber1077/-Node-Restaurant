@@ -6,10 +6,11 @@
     position: relative;
     &:after {
       content: '♥️';
-      font-size: 20px;
+      font-size: 25px;
       position: absolute;
       opacity: 0;
       top: 0;
+      color: red;
     }
     svg {
       width: 25px;
