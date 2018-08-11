@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const slug = require('slugs');
 
+
 const storeSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -41,6 +42,9 @@ const storeSchema = new mongoose.Schema({
     ref: 'User',
     required: 'You must supply an author'
   }
+}, {
+  toJSON: { virtuals: true },
+  toObject: { virtuals: true }
 });
 
 // Define indexes
@@ -74,5 +78,22 @@ storeSchema.statics.getTagsList = function () {
     { $sort: { count: -1 } }
   ]);
 }
+
+storeSchema.statics.getTopStores = function () {
+  return this.aggregate([
+    // Lookup Stores and populate their reviews
+    // filler for only items that have 2 or more reviews
+    // And the average reviews field
+    // sort it by new field, highest reviews first 
+    // limit to as most 10
+  ]);
+}
+
+// find reviews where the stores _id property === reviews store property
+storeSchema.virtual('reviews', {
+  ref: 'Review', // what model it link?
+  localField: '_id', // what field on the store?
+  foreignField: 'store' // what field on the reviews?
+});
 
 module.exports = mongoose.model('Store', storeSchema);
