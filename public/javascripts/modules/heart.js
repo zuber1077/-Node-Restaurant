@@ -1,10 +1,10 @@
+'use strict';
 import axios from 'axios';
 import { $ } from './bling';
 
 function ajaxHeart(e) {
   e.preventDefault();
-  console.log('HEART ITTT!!!!!!!!!!!!!!!!');
-  console.log(this);
+  // console.log(this);
   axios
     .post(this.action)
     .then(res => {
