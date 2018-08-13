@@ -1,3 +1,8 @@
 node_modules/
+.DS_Store
+*.log
+.idea
+variable.env
+variable.env.pro
 public/images
-public/uploads
+public/uploads/*

@@ -23,7 +23,7 @@
         }
         /* These are in the opposite DOM order
            re-order them to be visually in normal order
-           This is fine for accessibility because our labels have for()
+           This is fine for accessibility because labels have for()
          */
         &[for="star5"] { order: 5; }
         &[for="star4"] { order: 4; }

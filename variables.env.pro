@@ -1,0 +1,10 @@
+NODE_ENV=production 
+DATABASE='mongodb://EhtioRes:password1@ds261470.mlab.com:61470/zuber'
+MAIL_USER=020aa64b9ae6e8
+MAIL_PASS=e24d73946ee1e7
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+PORT=80
+MAP_KEY=AIzaSyD9ycobB5RiavbXpJBo0Muz2komaqqvGv0
+SECRET=thisismysecret1077
+KEY=sweetsesh
