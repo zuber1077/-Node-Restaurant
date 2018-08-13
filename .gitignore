@@ -2,5 +2,5 @@ node_modules/
 .DS_Store
 *.log
 .idea
-variable.env
-variable.env.pro
+variables.env
+variables.env.pro
