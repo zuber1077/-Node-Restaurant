@@ -4,5 +4,3 @@ node_modules/
 .idea
 variable.env
 variable.env.pro
-public/images
-public/uploads/*
